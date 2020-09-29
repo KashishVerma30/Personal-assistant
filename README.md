@@ -1,2 +1,2 @@
-# Personal-assistant
-A personal assistant made by converting the os 
+# Personal-Assistant
+A Personal Assistant made by converting the OS based program into a menu driven program using Python Code.
