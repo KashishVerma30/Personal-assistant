@@ -1,0 +1,118 @@
+import pyttsx3
+import wikipedia
+import speech_recognition as sr 
+import os
+import webbrowser
+import datetime
+
+
+def wishMe():
+	hour = int(datetime.datetime.now().hour)
+	if(hour>=0 and hour<12):
+    	 pyttsx3.speak("Hey!Good morning boss...")
+	elif(hour>=12 and hour<18):
+		 pyttsx3.speak("Hey!Good afternoon boss...")
+	else:
+		 pyttsx3.speak("Hey!Good evening boss...")
+
+def time():
+	strTime = datetime.datetime.now().strftime("%H:%M:%S")
+	pyttsx3.speak(f"Sir the time is {strTime}")
+
+
+def song():
+	 print("1. memories\n2.in the end\n3.on my way")
+	 print("which song:")
+	 while True:
+	 	print("What can i do for you: ", end='')
+	 	r=sr.Recognizer()
+	 	with sr.Microphone() as source:
+	 		 r.adjust_for_ambient_noise(source)
+	 		 print('we are listening...')
+	 		 audio=r.listen(source)
+	 		 print('speech done...')
+	 		 ch = r.recognize_google(audio)
+	 		 try:
+	 		 	 print("you said " + r.recognize_google(audio))
+	 		 except Exception as e:
+	 		 	 print("Error: " + str(e))
+	 	if("memories" in ch):
+	 		 webbrowser.open("https://youtu.be/SlPhMPnQ58k") 
+	 	elif("in the end" in ch):
+	 		 webbrowser.open("https://youtu.be/WNeLUngb-Xg")
+	 	elif("on my way" in ch):
+	 		 webbrowser.open("https://youtu.be/dhYOPzcsbGM")
+	 	else:print("not support")
+
+
+	
+
+if __name__ == "__main__":
+	wishMe()
+	print()
+	print("''''''''''>>stara<<''''''''''")
+	pyttsx3.speak("welcome here i am ur  perosnal assistance stara..")
+	print("Here the thing i can launch for u")
+	pyttsx3.speak("Here the thing i can launch for u ")
+	print("Chrome\nYoutube\nSublime Text\nWhatsapp\nNotepad\nFacebook\nTime\nSong\nControl Panel\nWikipidea\nWindow Media Player")
+	print()
+	
+
+	while True :
+		
+		print("What can i do for you: ", end='')
+		r=sr.Recognizer()
+		with sr.Microphone() as source:
+			r.adjust_for_ambient_noise(source)
+			pyttsx3.speak("what can i do for u boss now i m listening ")
+			print('what can i do for u boss now i m listening...')
+			audio=r.listen(source)
+			print('speech done...')
+			p = r.recognize_google(audio)
+			p = p.lower()
+			try:
+				 print("you said " + r.recognize_google(audio))
+			except Exception as e:
+				 print("Error: " + str(e))
+
+		
+
+		if("chrome" in p):
+	          pyttsx3.speak("Launching chrome"),os.system("chrome")
+		elif("stara" in p or "hey" in p or "assistant" in p):
+		      pyttsx3.speak("Yes boss tell me..I am here to listen u")
+		elif("sublime" in p or "sublime text editor" in p):
+		 	  pyttsx3.speak("Launching sublime text editor"),os.system("sublime_text")
+		elif("wmplayer" in p or "window media player" in p):
+		 	  pyttsx3.speak("Launching window media player"),os.system("wmplayer")
+		
+		elif("time" in p):
+		 	  time() 	
+		elif("song" in p):
+			  pyttsx3.speak("here the list  of the song which song you want to listen")
+			  song() 
+
+		elif("wikipedia" in p):
+			  pyttsx3.speak("searching")
+			  p = p.replace("wikipedia","pollution")
+			  p = p.replace("search","pollution")
+			  results = wikipedia.summary(p, sentences= 2)
+			  print(results)
+			  pyttsx3.speak("According to wikipedia"+results)   
+		elif("facebook" in p or "facebook.com" in p):
+			 pyttsx3.speak("Launching facebook"),webbrowser.open("www.facebook.com")
+		elif("whatsapp" in p or "whatsapp.com" in p):
+			 pyttsx3.speak("Launching whatsapp"),webbrowser.open("www.whatsapp.com")
+		elif("notepad" in p):
+			 pyttsx3.speak("Launching notepad"),os.system("notepad")
+		elif("youtube" in p or "youtube.com" in p):
+			  pyttsx3.speak("Launching youtube"),os.system('start chrome "www.youtube.com"')
+		elif("control panel" in p or "setting" in p):
+	          pyttsx3.speak("Launching control panel"),os.system("control panel")	 
+		elif(("exit" in p) or ("quit" in p)):
+	          pyttsx3.speak("Now i m leaving boss!! Have a nice day boss")
+	          break
+		else:
+	         print("dont support")
+	         pyttsx3.speak("don't support.. please speak again boss")
+
